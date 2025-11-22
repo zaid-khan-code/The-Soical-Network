@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SocialHub – Sign In / Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #f5f5ff 0%, #eeecfa 100%);
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        .gradient-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blob-1 {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .blob-2 {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: toast 4s forwards;
+        }
+
+        @keyframes toast {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+
+            10%,
+            90% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+
+    <!-- Animated Background Blobs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 blob-1 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 blob-2 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 1s;"></div>
+    </div>
+
+    <!-- Auth Card -->
+    <div
+        class="w-full max-w-md p-8 rounded-3xl bg-white/80 backdrop-blur-sm shadow-2xl relative z-10 border border-gray-200">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            <h1 id="title" class="text-3xl font-bold text-gradient mb-2">Welcome Back</h1>
+            <p id="subtitle" class="text-gray-500">Sign in to continue your journey</p>
+        </div>
+
+        <form id="authForm" class="space-y-5">
+            <!-- Name Field (Signup only) -->
+            <div id="nameField" class="hidden">
+                <label class="text-sm font-medium text-gray-700 block mb-2">Name</label>
+                <input type="text" id="name" placeholder="Enter your name"
+                    class="w-full h-12 px-4 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition" />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="text-sm font-medium text-gray-700 block mb-2">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required
+                    class="w-full h-12 px-4 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition" />
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label class="text-sm font-medium text-gray-700 block mb-2">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required
+                    class="w-full h-12 px-4 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition" />
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn"
+                class="w-full h-12 rounded-lg gradient-primary text-white font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-sparkles w-4 h-4 mr-2">
+                    <path
+                        d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z">
+                    </path>
+                    <path d="M20 3v4"></path>
+                    <path d="M22 5h-4"></path>
+                    <path d="M4 17v2"></path>
+                    <path d="M5 18H3"></path>
+                </svg>
+                <span id="btnText">Sign In</span>
+            </button>
+        </form>
+
+        <!-- Toggle Link -->
+        <div class="mt-6 text-center">
+            <button type="button" id="toggleBtn" class="text-sm text-gray-500 hover:text-purple-600 transition-colors">
+                Don't have an account? <span class="font-semibold text-purple-600">Sign Up</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        const isLogin = { value: true };
+        const title = document.getElementById('title');
+        const subtitle = document.getElementById('subtitle');
+        const nameField = document.getElementById('nameField');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        function updateMode() {
+            if (isLogin.value) {
+                title.textContent = 'Welcome Back';
+                subtitle.textContent = 'Sign in to continue your journey';
+                nameField.classList.add('hidden');
+                btnText.textContent = 'Sign In';
+                toggleBtn.innerHTML = `Don't have an account? <span class="font-semibold text-purple-600">Sign Up</span>`;
+            } else {
+                title.textContent = 'Join Us';
+                subtitle.textContent = 'Create your account today';
+                nameField.classList.remove('hidden');
+                btnText.textContent = 'Create Account';
+                toggleBtn.innerHTML = `Already have an account? <span class="font-semibold text-purple-600">Sign In</span>`;
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            isLogin.value = !isLogin.value;
+            updateMode();
+        });
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.background = isError ? '#ef4444' : '#10b981';
+            toast.textContent = message;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        document.getElementById('authForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password || (!isLogin.value && !name)) {
+                showToast('Please fill in all fields', true);
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+
+            if (isLogin.value) {
+                // Login
+                const user = users.find(u => u.email === email && u.password === password);
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    showToast(`Welcome back, ${user.name}!`);
+                    setTimeout(() => location.href = '/feed', 1500);
+                } else {
+                    showToast('Invalid email or password', true);
+                }
+            } else {
+                // Signup
+                if (users.some(u => u.email === email)) {
+                    showToast('Email already exists', true);
+                    return;
+                }
+                const newUser = {
+                    id: Date.now().toString(),
+                    name,
+                    email,
+                    password,
+                    avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
+                };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                showToast(`Account created! Welcome, ${name}!`);
+                setTimeout(() => location.href = '/feed', 1500);
+            }
+        });
+
+        // Initial update
+        updateMode();
+    </script>
+</body>
+
+</html>
