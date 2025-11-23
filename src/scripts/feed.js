@@ -10,7 +10,7 @@ function init() {
   // Check if user is logged in
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   if (!currentUser) {
-    window.location.href = '../pages/auth.html';
+    window.location.href = '../pages/startup.html';
     return;
   }
 
@@ -258,7 +258,7 @@ function handleLogout() {
   localStorage.removeItem('currentUser');
   showToast('Logged out successfully!');
   setTimeout(() => {
-    window.location.href = '../pages/auth.html';
+    window.location.href = '../../index.html';
   }, 1000);
 }
 
